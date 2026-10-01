@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Una despedida con cariño para Mor, de parte de Nachu y Leo.">
+  <title>Para Mor, con cariño</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Playfair+Display:wght@500;600&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <section class="cover paper-card" id="cover">
+      <div class="bow" aria-hidden="true"><span></span><span></span><i></i></div>
+      <p class="eyebrow">Un recuerdo para guardar</p>
+      <h1>Para Mor</h1>
+      <p class="subtitle">Una última carta, con cariño</p>
+      <div class="heart-line" aria-hidden="true">♡　♡　♡</div>
+      <button class="primary-button" id="open-letter" type="button">Abrir carta</button>
+      <p class="cover-signature">De parte de Nachu y Leo 🐻</p>
+    </section>
+
+    <div class="letter-app is-hidden" id="letter-app">
+      <article class="letter paper-card" aria-live="polite">
+        <div class="letter-top">✿</div>
+
+        <section class="letter-slide active">
+          <h2>Mor:</h2>
+          <p>Quería, por última vez, despedirme con algo que siempre me gustó hacer y dedicarte. Sos y fuiste alguien muy importante en mi vida. Gracias por todo lo que compartimos, por cada conversación, cada ilusión y por haber querido a Leo como nuestro hijo.</p>
+          <div class="memory-section slide-memory">
+            <div class="media-frame video-frame">
+              <video src="miaconleo.mp4" muted playsinline controls aria-label="Nachu con Leo"></video>
+            </div>
+            <p class="memory-label">Nuestro pequeño Leo</p>
+          </div>
+        </section>
+
+        <section class="letter-slide">
+          <p>Aunque nuestra historia termine, siempre voy a valorar lo que fuimos y los momentos lindos que me hiciste sentir, a pesar de la distancia. Leo y yo te vamos a recordar con muchísimo amor y cariño.</p>
+          <div class="memory-section slide-memory">
+            <div class="media-frame video-frame">
+              <video src="yo.mp4" muted playsinline controls aria-label="Nachu sonriendo y dando un beso a la cámara"></video>
+            </div>
+            <p class="memory-label">Un recuerdo mío para vos</p>
+          </div>
+        </section>
+
+        <section class="letter-slide">
+          <div class="memory-section slide-memory ella-memory">
+            <div class="photo-frame with-message">
+              <img src="ella.jpeg" alt="Tul">
+              <span>Siempre vas a ser hermosa</span>
+            </div>
+            <p class="memory-label">Para vos, Mor</p>
+          </div>
+          <p>Te deseo todo lo lindo que merecés en la vida, por la hermosa persona que sos y vas a ser siempre. Gracias por haber sido alguien tan linda en mi vida.</p>
+        </section>
+
+        <div class="slide-controls">
+          <span class="slide-count" id="slide-count">1 / 3</span>
+          <button class="next-button" id="next-slide" type="button">Siguiente</button>
+        </div>
+      </article>
+
+      <section class="gallery-section is-hidden" id="memories-gallery">
+        <div class="section-heading">
+          <p class="eyebrow">Ocho pequeños recuerdos</p>
+          <h2>Momentos que quedan</h2>
+          <p>Algunas cosas que compartimos y que siempre voy a guardar con cariño.</p>
+        </div>
+
+        <div class="gallery">
+          <figure class="memory-card"><span class="number">01</span><img src="dibujo.png" alt="Recuerdo 1" loading="lazy"></figure>
+          <figure class="memory-card"><span class="number">02</span><img src="dibujo2%20%282%29.png" alt="Recuerdo 2" loading="lazy"></figure>
+          <figure class="memory-card"><span class="number">03</span><img src="dibujo3.png" alt="Recuerdo 3" loading="lazy"></figure>
+          <figure class="memory-card"><span class="number">04</span><img src="dibujo4.png" alt="Recuerdo 4" loading="lazy"></figure>
+          <figure class="memory-card"><span class="number">05</span><img src="dibujo5.png" alt="Recuerdo 5" loading="lazy"></figure>
+          <figure class="memory-card"><span class="number">06</span><img src="dibujo6.png" alt="Recuerdo 6" loading="lazy"></figure>
+          <figure class="memory-card"><span class="number">07</span><img src="dibujo7.png" alt="Recuerdo 7" loading="lazy"></figure>
+          <figure class="memory-card"><span class="number">08</span><img src="dibujo8.png" alt="Recuerdo 8" loading="lazy"></figure>
+        </div>
+      </section>
+
+      <section class="final-message paper-card is-hidden" id="final-message">
+        <div class="heart-line" aria-hidden="true">♡　♡　♡</div>
+        <p>Con cariño,</p>
+        <div class="signature">
+          <strong>tu Nachu &lt;3 y Leo 🐻</strong>
+        </div>
+      </section>
+
+      <footer class="is-hidden" id="page-footer">
+        <div class="heart-line" aria-hidden="true">♡　♡　♡</div>
+        <p>Gracias por haber sido parte de mi vida.</p>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    const cover = document.getElementById('cover');
+    const letterApp = document.getElementById('letter-app');
+    const openLetter = document.getElementById('open-letter');
+    const slides = [...document.querySelectorAll('.letter-slide')];
+    const nextSlide = document.getElementById('next-slide');
+    const slideCount = document.getElementById('slide-count');
+    const memoriesGallery = document.getElementById('memories-gallery');
+    const finalMessage = document.getElementById('final-message');
+    const pageFooter = document.getElementById('page-footer');
+    let currentSlide = 0;
+    const videos = [...document.querySelectorAll('.letter-slide video')];
+
+    function playActiveVideo() {
+      videos.forEach((video) => {
+        video.pause();
+        if (!slides[currentSlide].contains(video)) {
+          video.currentTime = 0;
+        }
+      });
+
+      const activeVideo = slides[currentSlide].querySelector('video');
+      if (activeVideo) {
+        activeVideo.currentTime = 0;
+        activeVideo.play().catch(() => {});
+      }
+    }
+
+    function showSlide(index) {
+      slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === index));
+      slideCount.textContent = `${index + 1} / ${slides.length}`;
+      nextSlide.textContent = index === slides.length - 1 ? 'Ver recuerdos' : 'Siguiente';
+      playActiveVideo();
+    }
+
+    openLetter.addEventListener('click', () => {
+      cover.classList.add('opened');
+      window.setTimeout(() => {
+        cover.classList.add('is-hidden');
+        letterApp.classList.remove('is-hidden');
+        letterApp.classList.add('revealed');
+        playActiveVideo();
+      }, 500);
+    });
+
+    nextSlide.addEventListener('click', () => {
+      if (currentSlide < slides.length - 1) {
+        currentSlide += 1;
+        showSlide(currentSlide);
+      } else {
+        memoriesGallery.classList.remove('is-hidden');
+        finalMessage.classList.remove('is-hidden');
+        pageFooter.classList.remove('is-hidden');
+        document.querySelector('.gallery-section').scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  </script>
+</body>
+</html>
